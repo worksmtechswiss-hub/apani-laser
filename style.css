@@ -354,8 +354,17 @@ section {
   object-fit: contain;
   z-index: 0;
   opacity: 0.65;
-  clip-path: inset(0 0 12% 0);
+  clip-path: inset(0 0 9% 0);
   transition: opacity 0.8s ease;
+}
+
+@media (max-width: 768px) {
+  .hero-video {
+    width: 95%;
+    max-width: none;
+    top: 50%;
+    clip-path: inset(0 0 8% 0);
+  }
 }
 
 .hero-video-overlay {
