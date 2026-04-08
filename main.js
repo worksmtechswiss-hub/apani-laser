@@ -306,23 +306,45 @@ fadeUpStyle.textContent = `
 `;
 document.head.appendChild(fadeUpStyle);
 
-/* --- Hero Video Sequence --- */
+/* --- Hero Video Sequence with Laser Flash Transition --- */
 function initHeroVideoSequence() {
   const v1 = document.getElementById('heroVid1');
   const v2 = document.getElementById('heroVid2');
   if (!v1 || !v2) return;
 
+  // Create laser flash overlay
+  const flash = document.createElement('div');
+  flash.className = 'hero-laser-flash';
+  v1.parentElement.appendChild(flash);
+
   const videos = [v1, v2];
   let current = 0;
+  let transitioning = false;
 
   function playNext() {
+    if (transitioning) return;
+    transitioning = true;
+
     const cur = videos[current];
     const next = videos[(current + 1) % 2];
-    cur.style.opacity = '0';
-    next.currentTime = 0;
-    next.style.opacity = '0.6';
-    next.play();
-    current = (current + 1) % 2;
+
+    // Phase 1: Laser flash fires
+    flash.classList.add('active');
+
+    // Phase 2: At peak brightness, swap videos
+    setTimeout(() => {
+      next.currentTime = 0;
+      next.style.opacity = '0.65';
+      next.play();
+      cur.style.opacity = '0';
+    }, 400);
+
+    // Phase 3: Flash fades out
+    setTimeout(() => {
+      flash.classList.remove('active');
+      current = (current + 1) % 2;
+      transitioning = false;
+    }, 800);
   }
 
   v1.addEventListener('ended', playNext);

@@ -408,6 +408,56 @@ section {
   100% { left: 110%; opacity: 0; }
 }
 
+/* Laser flash transition between videos */
+.hero-laser-flash {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.hero-laser-flash::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent 0%, var(--gold) 20%, #fff 50%, var(--gold) 80%, transparent 100%);
+  box-shadow: 0 0 30px var(--gold), 0 0 80px rgba(201,169,110,0.5), 0 0 150px rgba(201,169,110,0.2);
+  transform: translateY(-50%) scaleX(0);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-laser-flash::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, rgba(201,169,110,0.15) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease 0.15s;
+}
+
+.hero-laser-flash.active {
+  opacity: 1;
+}
+
+.hero-laser-flash.active::before {
+  transform: translateY(-50%) scaleX(1);
+}
+
+.hero-laser-flash.active::after {
+  opacity: 1;
+}
+
 .hero-canvas {
   position: absolute;
   top: 0;
