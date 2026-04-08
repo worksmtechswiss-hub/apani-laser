@@ -354,6 +354,8 @@ section {
   object-fit: contain;
   z-index: 0;
   opacity: 0.6;
+  clip-path: inset(8% 0 0 0);
+  transition: opacity 0.8s ease;
 }
 
 .hero-video-overlay {

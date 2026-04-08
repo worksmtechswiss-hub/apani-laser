@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initFAQ();
   initBackToTop();
   initSmoothScroll();
+  initHeroVideoSequence();
 });
 
 /* --- Sticky Header --- */
@@ -304,3 +305,26 @@ fadeUpStyle.textContent = `
   }
 `;
 document.head.appendChild(fadeUpStyle);
+
+/* --- Hero Video Sequence --- */
+function initHeroVideoSequence() {
+  const v1 = document.getElementById('heroVid1');
+  const v2 = document.getElementById('heroVid2');
+  if (!v1 || !v2) return;
+
+  const videos = [v1, v2];
+  let current = 0;
+
+  function playNext() {
+    const cur = videos[current];
+    const next = videos[(current + 1) % 2];
+    cur.style.opacity = '0';
+    next.currentTime = 0;
+    next.style.opacity = '0.6';
+    next.play();
+    current = (current + 1) % 2;
+  }
+
+  v1.addEventListener('ended', playNext);
+  v2.addEventListener('ended', playNext);
+}
