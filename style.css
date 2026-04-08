@@ -339,8 +339,28 @@ section {
   align-items: center;
   justify-content: center;
   padding-top: var(--header-height);
-  background: linear-gradient(135deg, #1a1a1a 0%, #212121 50%, #1a1a1a 100%);
+  background: #0a0a0a;
   overflow: hidden;
+}
+
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.hero-video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(10,10,10,0.72) 0%, rgba(10,10,10,0.45) 50%, rgba(10,10,10,0.65) 100%);
+  z-index: 1;
 }
 
 .hero-canvas {
