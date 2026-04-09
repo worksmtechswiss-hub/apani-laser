@@ -126,6 +126,25 @@ section {
   background: var(--dark);
 }
 
+/* --- Intro Video Section --- */
+.intro-video-section {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+.intro-video-wrap {
+  margin: 2.5rem auto 0;
+  max-width: 960px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.55), 0 0 0 1px rgba(212,175,55,0.15);
+  background: #000;
+}
+.intro-video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .section-light {
   background: var(--off-white);
   color: var(--dark);
