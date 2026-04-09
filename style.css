@@ -1489,8 +1489,13 @@ section {
   margin: 0 0.5rem;
 }
 
-.breadcrumb .current {
+.breadcrumb .current,
+.breadcrumb-current {
   color: var(--gold);
+}
+.breadcrumb-sep {
+  color: var(--text-muted);
+  margin: 0 0.5rem;
 }
 
 /* --- Scroll Animations --- */
