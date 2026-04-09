@@ -145,6 +145,58 @@ section {
   width: 100%;
   height: auto;
 }
+.intro-features {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.intro-feature {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(212,175,55,0.18);
+  border-radius: 14px;
+  padding: 1.75rem 1.25rem;
+  text-align: center;
+  transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+.intro-feature:hover {
+  transform: translateY(-4px);
+  border-color: rgba(212,175,55,0.5);
+  background: rgba(255,255,255,0.05);
+}
+.intro-feature-icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(212,175,55,0.18), rgba(212,175,55,0.05));
+  color: var(--gold, #d4af37);
+}
+.intro-feature-icon svg {
+  width: 28px;
+  height: 28px;
+}
+.intro-feature h3 {
+  font-size: 1.05rem;
+  margin: 0 0 0.5rem;
+  color: #fff;
+}
+.intro-feature p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.7);
+  margin: 0;
+}
+@media (max-width: 900px) {
+  .intro-features { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .intro-features { grid-template-columns: 1fr; }
+}
+
 .intro-video-logo {
   position: absolute;
   bottom: 2%;
