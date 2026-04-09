@@ -147,18 +147,18 @@ section {
 }
 .intro-video-logo {
   position: absolute;
-  bottom: 1.5%;
-  right: 1.5%;
-  width: 22%;
-  max-width: 200px;
-  min-width: 110px;
+  bottom: 2%;
+  right: 2%;
+  width: 13%;
+  max-width: 110px;
+  min-width: 70px;
   height: auto;
   background: #000;
-  padding: 14px 22px;
-  border-radius: 10px;
+  padding: 8px 14px;
+  border-radius: 8px;
   pointer-events: none;
   z-index: 2;
-  box-shadow: 0 0 18px 12px #000;
+  box-shadow: 0 0 10px 6px #000;
 }
 
 .section-light {
