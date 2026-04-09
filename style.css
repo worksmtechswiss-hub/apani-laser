@@ -132,6 +132,7 @@ section {
   padding-bottom: 5rem;
 }
 .intro-video-wrap {
+  position: relative;
   margin: 2.5rem auto 0;
   max-width: 960px;
   border-radius: 16px;
@@ -143,6 +144,20 @@ section {
   display: block;
   width: 100%;
   height: auto;
+}
+.intro-video-logo {
+  position: absolute;
+  bottom: 3%;
+  right: 3%;
+  width: 14%;
+  max-width: 130px;
+  min-width: 70px;
+  height: auto;
+  background: rgba(0,0,0,0.85);
+  padding: 8px 14px;
+  border-radius: 8px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .section-light {
