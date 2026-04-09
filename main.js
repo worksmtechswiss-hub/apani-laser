@@ -350,3 +350,61 @@ function initHeroVideoSequence() {
   v1.addEventListener('ended', playNext);
   v2.addEventListener('ended', playNext);
 }
+
+/* ===== Before / After Slider ===== */
+(function initBaSliders(){
+  const sliders = document.querySelectorAll('.ba-slider');
+  if (!sliders.length) return;
+
+  sliders.forEach((el) => {
+    const before = el.dataset.before;
+    const after = el.dataset.after;
+    const lblBefore = el.dataset.labelBefore || 'Vorher';
+    const lblAfter = el.dataset.labelAfter || 'Nachher';
+
+    el.innerHTML = `
+      <img class="ba-after" src="${after}" alt="${lblAfter}" loading="lazy">
+      <img class="ba-before" src="${before}" alt="${lblBefore}" loading="lazy">
+      <span class="ba-label ba-label-before">${lblBefore}</span>
+      <span class="ba-label ba-label-after">${lblAfter}</span>
+      <div class="ba-handle"></div>
+    `;
+
+    const beforeImg = el.querySelector('.ba-before');
+    const handle = el.querySelector('.ba-handle');
+    let dragging = false;
+
+    function setPos(clientX) {
+      const rect = el.getBoundingClientRect();
+      let pct = ((clientX - rect.left) / rect.width) * 100;
+      pct = Math.max(0, Math.min(100, pct));
+      beforeImg.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
+      handle.style.left = pct + '%';
+    }
+
+    function start(e) {
+      dragging = true;
+      const x = e.touches ? e.touches[0].clientX : e.clientX;
+      setPos(x);
+    }
+    function move(e) {
+      if (!dragging) return;
+      const x = e.touches ? e.touches[0].clientX : e.clientX;
+      setPos(x);
+    }
+    function end() { dragging = false; }
+
+    el.addEventListener('mousedown', start);
+    el.addEventListener('touchstart', start, { passive: true });
+    window.addEventListener('mousemove', move);
+    window.addEventListener('touchmove', move, { passive: true });
+    window.addEventListener('mouseup', end);
+    window.addEventListener('touchend', end);
+
+    // Hover-driven scrubbing on desktop without click
+    el.addEventListener('mousemove', (e) => {
+      if (!dragging) return;
+      setPos(e.clientX);
+    });
+  });
+})();

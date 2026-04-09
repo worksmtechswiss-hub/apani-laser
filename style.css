@@ -145,6 +145,95 @@ section {
   width: 100%;
   height: auto;
 }
+
+/* --- Before / After Slider --- */
+.ba-slider {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 2.5rem auto 0;
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.55), 0 0 0 1px rgba(212,175,55,0.18);
+  user-select: none;
+  touch-action: none;
+  background: #000;
+  cursor: ew-resize;
+}
+.ba-slider img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  display: block;
+}
+.ba-slider .ba-after { z-index: 1; }
+.ba-slider .ba-before {
+  z-index: 2;
+  clip-path: inset(0 50% 0 0);
+}
+.ba-slider .ba-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 3px;
+  background: var(--gold, #d4af37);
+  z-index: 3;
+  transform: translateX(-50%);
+  pointer-events: none;
+  box-shadow: 0 0 12px rgba(212,175,55,0.6);
+}
+.ba-slider .ba-handle::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--gold, #d4af37);
+  border: 3px solid #fff;
+  transform: translate(-50%,-50%);
+  box-shadow: 0 4px 18px rgba(0,0,0,0.6);
+}
+.ba-slider .ba-handle::after {
+  content: '\2194';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  color: #000;
+  font-size: 22px;
+  font-weight: 700;
+  z-index: 4;
+}
+.ba-slider .ba-label {
+  position: absolute;
+  top: 14px;
+  padding: 6px 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(0,0,0,0.7);
+  border: 1px solid rgba(212,175,55,0.4);
+  border-radius: 999px;
+  z-index: 4;
+  pointer-events: none;
+}
+.ba-slider .ba-label-before { left: 14px; }
+.ba-slider .ba-label-after { right: 14px; }
+@media (max-width: 600px) {
+  .ba-slider { aspect-ratio: 4 / 3; }
+  .ba-slider .ba-handle::before { width: 36px; height: 36px; }
+  .ba-slider .ba-label { font-size: 0.7rem; padding: 4px 10px; }
+}
+
 .intro-features {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
