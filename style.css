@@ -339,7 +339,7 @@ section {
   align-items: center;
   justify-content: center;
   padding-top: var(--header-height);
-  background: #0a0a0a;
+  background: #000;
   overflow: hidden;
 }
 
@@ -356,6 +356,8 @@ section {
   opacity: 0.65;
   clip-path: inset(0 0 9% 0);
   transition: opacity 0.8s ease;
+  -webkit-mask-image: radial-gradient(ellipse 70% 80% at center, #000 55%, transparent 100%);
+          mask-image: radial-gradient(ellipse 70% 80% at center, #000 55%, transparent 100%);
 }
 
 @media (max-width: 768px) {
@@ -373,7 +375,7 @@ section {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(10,10,10,0.72) 0%, rgba(10,10,10,0.45) 50%, rgba(10,10,10,0.65) 100%);
+  background: linear-gradient(135deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.45) 50%, rgba(0,0,0,0.65) 100%);
   z-index: 1;
 }
 
@@ -385,7 +387,7 @@ section {
   height: 25%;
   z-index: 4;
   pointer-events: none;
-  background: linear-gradient(to top, rgba(10,10,10,1) 0%, rgba(10,10,10,0.95) 40%, rgba(10,10,10,0.6) 70%, transparent 100%);
+  background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.95) 40%, rgba(0,0,0,0.6) 70%, transparent 100%);
 }
 
 .hero-video-watermark-mask::before {
