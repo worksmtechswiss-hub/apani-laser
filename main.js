@@ -408,3 +408,56 @@ function initHeroVideoSequence() {
     });
   });
 })();
+
+/* ===== Product Gallery ===== */
+(function initProductGalleries(){
+  const galleries = document.querySelectorAll('[data-gallery]');
+  if (!galleries.length) return;
+
+  galleries.forEach((gallery) => {
+    const track = gallery.querySelector('.product-gallery-track');
+    const slides = gallery.querySelectorAll('.product-gallery-slide');
+    const prevBtn = gallery.querySelector('.product-gallery-prev');
+    const nextBtn = gallery.querySelector('.product-gallery-next');
+    const dotsWrap = gallery.querySelector('.product-gallery-dots');
+    if (!track || !slides.length) return;
+
+    // Build dots
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'product-gallery-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', `Bild ${i + 1}`);
+      dot.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(dot);
+    });
+
+    function currentIndex() {
+      return Math.round(track.scrollLeft / track.clientWidth);
+    }
+    function goTo(i) {
+      const max = slides.length - 1;
+      const target = Math.max(0, Math.min(max, i));
+      track.scrollTo({ left: target * track.clientWidth, behavior: 'smooth' });
+    }
+    function updateDots() {
+      const idx = currentIndex();
+      dotsWrap.querySelectorAll('.product-gallery-dot').forEach((d, i) => {
+        d.classList.toggle('active', i === idx);
+      });
+    }
+
+    prevBtn?.addEventListener('click', () => goTo(currentIndex() - 1));
+    nextBtn?.addEventListener('click', () => goTo(currentIndex() + 1));
+    track.addEventListener('scroll', () => {
+      window.requestAnimationFrame(updateDots);
+    });
+
+    // Keyboard arrows when gallery focused
+    gallery.tabIndex = 0;
+    gallery.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(currentIndex() - 1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); goTo(currentIndex() + 1); }
+    });
+  });
+})();
