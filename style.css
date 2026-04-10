@@ -151,7 +151,7 @@ section {
   position: relative;
   width: 100%;
   max-width: 1200px;
-  margin: 2.5rem auto 0;
+  margin: 2.5rem auto 3rem;
   aspect-ratio: 16 / 9;
   border-radius: 14px;
   overflow: hidden;
