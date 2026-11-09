@@ -1852,3 +1852,10 @@ section {
   }
   .table-scroll .comparison-table td:first-child::before { display: none; }
 }
+
+/* --- Kontrast in hellen Sektionen (Titel/Listen waren weiss auf weiss) --- */
+.section-light .advantage-item h3,
+.section-light .advantage-item h4 { color: var(--dark); }
+.section-light .advantage-item { border-bottom-color: #e0e0e0; }
+.section-light .delivery-list li,
+.section-light .service-list li { color: #555; }
