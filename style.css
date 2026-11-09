@@ -1788,3 +1788,67 @@ section {
   .stat-number { font-size: 1.6rem; }
   .container { padding: 0 1rem; }
 }
+
+/* --- Anwendungs-Landingpages (Rost / Lack / Schweissnaht) --- */
+.hero-lead {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-light);
+  margin-bottom: 1.5rem;
+  max-width: 560px;
+}
+.ba-caption {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: -2rem 0 2.5rem;
+}
+.faq-question .faq-q {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--white);
+  flex: 1;
+  padding-right: 1rem;
+  margin: 0;
+}
+.section-light .faq-question .faq-q { color: var(--dark); }
+.footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr 1fr; }
+@media (max-width: 1024px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .footer-grid { grid-template-columns: 1fr; }
+  .table-scroll .comparison-table thead { display: none; }
+  .table-scroll .comparison-table,
+  .table-scroll .comparison-table tbody,
+  .table-scroll .comparison-table tr,
+  .table-scroll .comparison-table td { display: block; width: 100%; }
+  .table-scroll .comparison-table tr {
+    margin-bottom: 1rem;
+    border: 1px solid var(--border-dark);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .table-scroll .comparison-table td {
+    border: none;
+    border-bottom: 1px solid var(--border-dark);
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    text-align: right;
+  }
+  .table-scroll .comparison-table td:last-child { border-bottom: none; }
+  .table-scroll .comparison-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--gold);
+    text-align: left;
+  }
+  .table-scroll .comparison-table td:first-child {
+    background: var(--dark-card);
+    font-weight: 600;
+    color: var(--white);
+    justify-content: flex-start;
+  }
+  .table-scroll .comparison-table td:first-child::before { display: none; }
+}
