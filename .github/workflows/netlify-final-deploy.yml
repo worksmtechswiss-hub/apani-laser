@@ -1,0 +1,33 @@
+# Netlify baut bei jedem Push automatisch (GitHub-App). Kommen mehrere Pushes kurz
+# hintereinander, kann ein verspäteter Build eines ÄLTEREN Commits zuletzt fertig werden
+# und den neueren überschreiben (so passiert am 09.11.2026).
+# Diese Action wartet nach dem letzten Push 3 Minuten und löst dann über den Build-Hook
+# einen Build des aktuellen master aus - der neueste Stand gewinnt immer.
+name: Netlify - finaler Deploy von master
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+concurrency:
+  group: netlify-final-deploy
+  cancel-in-progress: true   # bei schnellen Folge-Pushes zählt nur der letzte
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Warten, bis die automatischen Builds durch sind
+        run: sleep 180
+      - name: Build von master über Build-Hook auslösen
+        env:
+          HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "::warning::Secret NETLIFY_BUILD_HOOK fehlt - nichts ausgelöst."
+            exit 0
+          fi
+          curl -fsS -X POST -d '{}' "$HOOK"
+          echo "Build von master ausgelöst."
